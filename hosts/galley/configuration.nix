@@ -25,7 +25,7 @@
   # time.timeZone = "Europe/Amsterdam";
 
   # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.default = "http://user:password@p2roxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
@@ -89,6 +89,7 @@
     xfce.thunar
     git
     unzip
+    xdg-utils
     nil # Nix Language server
   ];
 
@@ -101,8 +102,15 @@
     xwayland.enable = true;
   };
 
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    wlr.enable = true;
+  };
 
   hardware = {
     opengl.enable = true;
