@@ -80,6 +80,9 @@
     unzip
     xdg-utils
     git
+    playerctl
+    brightnessctl
+    swaylock
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
     nil # Nix Language server
   ];
@@ -88,6 +91,23 @@
     NIXOS_OZONE_WL = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
+  };
+
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
+
+  security.pam.services.swaylock = { };
+  security.pam.services.swaylock.fprintAuth = false;
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "crystal";
+      };
+      default_session = initial_session;
+    };
   };
   
   programs.hyprland = {
@@ -108,6 +128,23 @@
   hardware = {
     opengl.enable = true;
   };
+
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+  };
+};
+
   
   nixpkgs.config.allowUnfree = true;
  
