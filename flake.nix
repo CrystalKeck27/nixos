@@ -33,7 +33,7 @@
             useUserPackages = true;
             useGlobalPkgs = false;
             extraSpecialArgs = {inherit inputs;};
-            users.crystal = import ./home/crystal/home.nix ;
+            users.crystal = ./home/crystal/home.nix ;
           };
         }
         hyprland.nixosModules.default

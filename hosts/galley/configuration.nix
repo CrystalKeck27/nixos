@@ -64,18 +64,6 @@
   users.users.crystal = {
     isNormalUser = true;
     extraGroups = [ "wheel" "plugdev" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      tree
-      discord
-      obsidian
-      octave
-      krita
-      grim
-      slurp
-      wl-clipboard
-      rofi-wayland
-    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -92,10 +80,9 @@
     rustup
     probe-rs
     gcc-arm-embedded
-    xfce.thunar
-    git
     unzip
     xdg-utils
+    git
     nil # Nix Language server
   ];
 

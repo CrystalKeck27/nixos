@@ -10,6 +10,7 @@
     teams-for-linux
 
     dunst
+    krita
     obsidian
     xfce.thunar
 
@@ -17,11 +18,13 @@
     grim
     ffmpeg_6
     slurp
-    wl-clipboard
     vlc
+    wl-clipboard
 
     # System
     polkit_gnome
+    rofi-wayland
+    tree
     unzip
   ];
 }
