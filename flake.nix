@@ -10,7 +10,7 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
-    # xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
 
     waveforms.url = "github:CrystalKeck27/waveforms-flake";
   };
