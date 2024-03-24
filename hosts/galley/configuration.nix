@@ -82,7 +82,6 @@
     git
     playerctl
     brightnessctl
-    swaylock
     gtk4
     gnome.seahorse
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
@@ -97,9 +96,6 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
-
-  # security.pam.services.swaylock = { };
-  # security.pam.services.swaylock.fprintAuth = false;
 
   # services.greetd = {
   #   enable = true;
