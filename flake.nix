@@ -4,19 +4,54 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    # xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+
+    waveforms.url = "github:CrystalKeck27/waveforms-flake";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, waveforms, ... }@inputs: let
+  supportedSystems = ["x86_64-linux"];
+
+  forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+
+  nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
+  in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs hyprland;};
+      system = "x86_64-linux";
       modules = [
         ./hosts/galley/configuration.nix
-        # inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = false;
+            extraSpecialArgs = {inherit inputs;};
+            users.crystal = import ./home/crystal/home.nix ;
+          };
+        }
+        hyprland.nixosModules.default
+        waveforms.nixosModule
       ];
     };
+
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgsFor.${system};
+    in {
+      default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          git
+          alejandra
+          statix
+        ];
+      };
+    });
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }

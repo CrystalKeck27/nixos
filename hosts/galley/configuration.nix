@@ -63,12 +63,18 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.crystal = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "plugdev" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
       tree
       discord
       obsidian
+      octave
+      krita
+      grim
+      slurp
+      wl-clipboard
+      rofi-wayland
     ];
   };
 
@@ -78,7 +84,7 @@
     wget
     kitty
     swww
-    wofi
+    eww
     mako
     libnotify
     vscode
@@ -95,6 +101,8 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
   };
   
   programs.hyprland = {
@@ -107,7 +115,7 @@
     xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-hyprland
     ];
     wlr.enable = true;
   };
