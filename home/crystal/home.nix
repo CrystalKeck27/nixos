@@ -9,9 +9,20 @@
     home-manager.enable = true;
   };
 
+  programs.hyprlock = {
+    enable = true;
+
+    general = {
+      disable_loading_bar = true;
+      hide_cursor = false;
+      no_fade_in = true;
+    };
+  };
+
   imports = [
     ./apps
     ./tools
+    inputs.hyprlock.homeManagerModules.default
   ];
 
   nixpkgs = {

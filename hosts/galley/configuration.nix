@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 {
   imports =
@@ -83,6 +83,9 @@
     playerctl
     brightnessctl
     swaylock
+    greetd.regreet
+    gtk4
+    gnome.seahorse
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
     nil # Nix Language server
   ];
@@ -96,21 +99,51 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
-  security.pam.services.swaylock = { };
-  security.pam.services.swaylock.fprintAuth = false;
+  # security.pam.services.swaylock = { };
+  # security.pam.services.swaylock.fprintAuth = false;
 
-  
+  # programs.regreet.enable = true;
 
-  services.greetd = {
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.regreet}/bin/regreet";
+  #       user = "greeter";
+  #     };
+  #   };
+  # };
+
+  # systemd.tmpfiles.rules = [
+  #   "d /var/log/regreet 0755 greeter greeter - -"
+  #   "d /var/cache/regreet 0755 greeter greeter - -"
+  # ];
+
+  services.greetd = let
+    session = {
+      command = "${lib.getExe config.programs.hyprland.package}";
+      user = "crystal";
+    };
+  in {
     enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "crystal";
-      };
-      default_session = initial_session;
+    settings = {
+      terminal.vt = 1;
+      default_session = session;
+      initial_session = session;
     };
   };
+
+
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "${pkgs.hyprland}/bin/Hyprland";
+  #       user = "crystal";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
   
   programs.hyprland = {
     enable = true;
@@ -132,12 +165,12 @@
   };
 
   systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
