@@ -83,7 +83,6 @@
     playerctl
     brightnessctl
     swaylock
-    greetd.regreet
     gtk4
     gnome.seahorse
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
@@ -101,8 +100,6 @@
 
   # security.pam.services.swaylock = { };
   # security.pam.services.swaylock.fprintAuth = false;
-
-  # programs.regreet.enable = true;
 
   # services.greetd = {
   #   enable = true;
