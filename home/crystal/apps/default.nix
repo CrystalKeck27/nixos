@@ -2,6 +2,7 @@
   imports = [
     ./discord
     ./firefox
+    ./vscode
   ];
 
   home.packages = with pkgs; [

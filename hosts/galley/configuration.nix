@@ -75,7 +75,6 @@
     eww
     mako
     libnotify
-    vscode
     dolphin
     rustup
     probe-rs
