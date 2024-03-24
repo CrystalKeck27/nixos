@@ -99,6 +99,8 @@
   security.pam.services.swaylock = { };
   security.pam.services.swaylock.fprintAuth = false;
 
+  
+
   services.greetd = {
     enable = true;
     settings = rec {
