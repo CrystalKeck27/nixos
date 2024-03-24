@@ -76,8 +76,6 @@
     mako
     libnotify
     dolphin
-    rustup
-    probe-rs
     gcc-arm-embedded
     unzip
     xdg-utils

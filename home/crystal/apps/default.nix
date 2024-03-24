@@ -9,6 +9,8 @@
 
     # School
     teams-for-linux
+    rustup
+    probe-rs
 
     dunst
     krita
