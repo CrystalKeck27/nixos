@@ -8,11 +8,13 @@
   home.packages = with pkgs; [
 
     # School
+    gnumake
     teams-for-linux
     rustup
     probe-rs
 
     dunst
+    element-desktop
     krita
     obsidian
     xfce.thunar

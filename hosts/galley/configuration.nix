@@ -63,7 +63,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.crystal = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "plugdev" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "plugdev" "dialout" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
