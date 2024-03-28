@@ -10,10 +10,14 @@
     # School
     gnumake
     teams-for-linux
-    rustup
     probe-rs
     quartus-prime-lite
 
+    # Development
+    octave
+    rustup
+
+    # Desktop
     dunst
     element-desktop
     krita
