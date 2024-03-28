@@ -12,6 +12,7 @@
     teams-for-linux
     rustup
     probe-rs
+    quartus-prime-lite
 
     dunst
     element-desktop
