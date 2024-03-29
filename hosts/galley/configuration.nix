@@ -57,35 +57,23 @@
     pulse.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.crystal = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "plugdev" "dialout" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "plugdev" "dialout" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
     kitty
     swww
-    eww
     mako
     libnotify
-    dolphin
-    gcc-arm-embedded
     unzip
     xdg-utils
     git
     playerctl
     brightnessctl
-    gtk4
-    gnome.seahorse
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
-    nil # Nix Language server
   ];
 
   environment.sessionVariables = {
@@ -96,21 +84,6 @@
 
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command = "${pkgs.greetd.regreet}/bin/regreet";
-  #       user = "greeter";
-  #     };
-  #   };
-  # };
-
-  # systemd.tmpfiles.rules = [
-  #   "d /var/log/regreet 0755 greeter greeter - -"
-  #   "d /var/cache/regreet 0755 greeter greeter - -"
-  # ];
 
   services.greetd = let
     session = {
@@ -125,18 +98,6 @@
       initial_session = session;
     };
   };
-
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = rec {
-  #     initial_session = {
-  #       command = "${pkgs.hyprland}/bin/Hyprland";
-  #       user = "crystal";
-  #     };
-  #     default_session = initial_session;
-  #   };
-  # };
   
   programs.hyprland = {
     enable = true;

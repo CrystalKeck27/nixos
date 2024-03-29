@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
 
     # School
+    gcc-arm-embedded
     gnumake
     teams-for-linux
     probe-rs
@@ -16,10 +17,13 @@
     # Development
     octave
     rustup
+    nil # Nix Language server
 
     # Desktop
     dunst
     element-desktop
+    gnome.seahorse
+    gtk4
     krita
     obsidian
     xfce.thunar
