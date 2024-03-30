@@ -2,7 +2,6 @@
   imports = [
     ./discord
     ./firefox
-    ./steam
     ./vscode
   ];
 
