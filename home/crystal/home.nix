@@ -21,6 +21,7 @@
 
   imports = [
     ./apps
+    ./desktop
     ./tools
     inputs.hyprlock.homeManagerModules.default
   ];

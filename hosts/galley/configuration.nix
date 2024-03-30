@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
     ];
 
@@ -22,7 +22,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "GMT-5";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@p2roxy:port/";
@@ -64,6 +64,7 @@
 
   environment.systemPackages = with pkgs; [
     wget
+    networkmanager
     kitty
     swww
     mako
@@ -71,8 +72,6 @@
     unzip
     xdg-utils
     git
-    playerctl
-    brightnessctl
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
   ];
 

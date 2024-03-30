@@ -2,8 +2,11 @@
   imports = [
     ./discord
     ./firefox
+    ./steam
     ./vscode
   ];
+
+  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
 
@@ -27,6 +30,7 @@
     krita
     obsidian
     xfce.thunar
+    (nerdfonts.override { fonts = [ "VictorMono" "JetBrainsMono" ]; })
 
     # Screenshot tools
     grim
