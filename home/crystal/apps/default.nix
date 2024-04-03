@@ -28,8 +28,13 @@
     gtk4
     krita
     obsidian
+    pamixer
+    polkit_gnome
+    rofi-wayland
     xfce.thunar
     (nerdfonts.override { fonts = [ "VictorMono" "JetBrainsMono" ]; })
+
+    plex-media-player
 
     # Screenshot tools
     grim
@@ -39,8 +44,6 @@
     wl-clipboard
 
     # System
-    polkit_gnome
-    rofi-wayland
     tree
     unzip
   ];

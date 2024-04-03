@@ -12,6 +12,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprlock.url = "github:hyprwm/hyprlock";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    ags.url = "github:Aylur/ags";
 
     waveforms.url = "github:CrystalKeck27/waveforms-flake";
   };
