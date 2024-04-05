@@ -142,8 +142,19 @@
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
+    };
   };
-};
+
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "51-probe-rs-micro.rules";
+      destination = "/lib/udev/rules.d/51-probe-rs-micro.rules";
+      text = ''
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", TAG+="uaccess"
+      '';
+    })
+  ];
+
 
   
   nixpkgs.config.allowUnfree = true;
