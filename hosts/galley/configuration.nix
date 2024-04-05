@@ -145,6 +145,8 @@
     };
   };
 
+  # https://github.com/lilyinstarlight/foosteros/blob/1cd77c17e5daf04823a5ccc50b00db0115959542/modules/nixos/hardware/playdate.nix#L25-L34
+  # @lily:lily.flowers on matrix
   services.udev.packages = [
     (pkgs.writeTextFile {
       name = "51-probe-rs-micro.rules";
