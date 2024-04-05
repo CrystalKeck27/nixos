@@ -17,7 +17,7 @@
   networking.hostName = "galley";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -90,20 +90,22 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
-  services.greetd = let
-    session = {
-      command = "${lib.getExe config.programs.hyprland.package}";
-      user = "crystal";
+  services.greetd =
+    let
+      session = {
+        command = "${lib.getExe config.programs.hyprland.package}";
+        user = "crystal";
+      };
+    in
+    {
+      enable = true;
+      settings = {
+        terminal.vt = 1;
+        default_session = session;
+        initial_session = session;
+      };
     };
-  in {
-    enable = true;
-    settings = {
-      terminal.vt = 1;
-      default_session = session;
-      initial_session = session;
-    };
-  };
-  
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -158,9 +160,9 @@
   ];
 
 
-  
+
   nixpkgs.config.allowUnfree = true;
- 
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

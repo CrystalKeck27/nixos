@@ -4,7 +4,7 @@ _: {
     userName = "CrystalKeck27";
     userEmail = "meaneea@gmail.com";
     extraConfig = {
-      init = {defaultBranch = "main";};
+      init = { defaultBranch = "main"; };
       core.editor = "code";
     };
   };
