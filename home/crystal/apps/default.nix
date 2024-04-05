@@ -20,6 +20,7 @@
     octave
     rustup
     nil # Nix Language server
+    nixpkgs-fmt
 
     # Desktop
     dunst
