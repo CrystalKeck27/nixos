@@ -21,6 +21,8 @@
     rustup
     nil # Nix Language server
     nixpkgs-fmt
+    sass
+    bun
 
     # Desktop
     dunst
