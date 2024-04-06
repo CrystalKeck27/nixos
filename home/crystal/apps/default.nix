@@ -47,5 +47,6 @@
     # System
     tree
     unzip
+    inotify-tools
   ];
 }
