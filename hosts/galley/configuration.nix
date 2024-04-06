@@ -64,7 +64,7 @@
   services.blueman.enable = true;
 
   users.users.crystal = {
-    # shell = pkgs.fish;
+    shell = pkgs.fish;
     isNormalUser = true;
     extraGroups = [ "wheel" "plugdev" "dialout" ];
   };
@@ -160,7 +160,22 @@
     })
   ];
 
+  programs.fish.enable = true;
+
   nixpkgs.config.allowUnfree = true;
+
+  # https://nixos.wiki/wiki/Automatic_system_upgrades
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
