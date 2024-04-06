@@ -64,6 +64,7 @@
   services.blueman.enable = true;
 
   users.users.crystal = {
+    # shell = pkgs.fish;
     isNormalUser = true;
     extraGroups = [ "wheel" "plugdev" "dialout" ];
   };
@@ -158,8 +159,6 @@
       '';
     })
   ];
-
-
 
   nixpkgs.config.allowUnfree = true;
 
