@@ -22,7 +22,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
-  time.timeZone = "GMT-5";
+  time.timeZone = "CDT";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@p2roxy:port/";
