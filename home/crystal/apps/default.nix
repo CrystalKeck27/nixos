@@ -23,6 +23,7 @@
     nixpkgs-fmt
     sass
     bun
+    typescript
 
     # Desktop
     dunst
