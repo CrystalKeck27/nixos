@@ -14,6 +14,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Look into:
+  # https://github.com/BeardedTek/nixos-24.05-secureboot-installer/releases/tag/2024-01-16-001
+
   networking.hostName = "galley";
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
