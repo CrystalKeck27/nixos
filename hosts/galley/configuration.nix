@@ -65,6 +65,7 @@
   hardware.bluetooth.powerOnBoot = true;
 
   services.blueman.enable = true;
+  services.upower.enable = true;
 
   users.users.crystal = {
     shell = pkgs.fish;

@@ -37,6 +37,8 @@
     rofi-wayland
     xfce.thunar
     (nerdfonts.override { fonts = [ "VictorMono" "JetBrainsMono" ]; })
+    brightnessctl
+    wlsunset
 
     plex-media-player
 
