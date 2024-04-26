@@ -40,6 +40,7 @@
     brightnessctl
     wlsunset
 
+    surrealist
     plex-media-player
 
     # Screenshot tools
