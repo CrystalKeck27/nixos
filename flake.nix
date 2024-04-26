@@ -4,9 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +17,7 @@
     waveforms.url = "github:CrystalKeck27/waveforms-flake";
   };
 
-  outputs = { self, nixpkgs, nix-ld, home-manager, hyprland, waveforms, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, waveforms, ... }@inputs:
     let
       supportedSystems = [ "x86_64-linux" ];
 
@@ -34,8 +31,6 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/galley/configuration.nix
-          nix-ld.nixosModules.nix-ld
-          { programs.nix-ld.dev.enable = true; }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
