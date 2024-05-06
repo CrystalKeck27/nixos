@@ -15,6 +15,7 @@
     teams-for-linux
     probe-rs
     quartus-prime-lite
+    xournalpp
 
     # Development
     octave
