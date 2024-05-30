@@ -218,6 +218,8 @@
       destination = "/lib/udev/rules.d/51-probe-rs-micro.rules";
       text = ''
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", TAG+="uaccess"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", TAG+="uaccess"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", TAG+="uaccess"
       '';
     })
   ];

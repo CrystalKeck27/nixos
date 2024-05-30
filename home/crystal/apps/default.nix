@@ -16,6 +16,10 @@
     probe-rs
     quartus-prime-lite
     xournalpp
+    xournal
+    pkgsCross.avr.buildPackages.gcc
+    avrdude
+    ravedude
 
     # Development
     octave
@@ -43,6 +47,7 @@
 
     surrealist
     plex-media-player
+    plexamp
 
     # Screenshot tools
     grim
