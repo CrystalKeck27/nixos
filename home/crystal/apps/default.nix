@@ -22,6 +22,7 @@
     ravedude
 
     # Development
+    cargo-generate
     octave
     rustup
     nil # Nix Language server
