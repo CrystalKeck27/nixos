@@ -20,7 +20,7 @@
     inputs.vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-wsl, vscode-server, home-manager, hyprland, waveforms, ... }@inputs:
     let
       supportedSystems = [ "x86_64-linux" ];
 
