@@ -10,6 +10,7 @@
   };
 
   imports = [
+    ./apps
     ./tools
   ];
 
