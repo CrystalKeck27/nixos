@@ -19,8 +19,9 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
-  outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs: let
-      supportedSystems = ["x86_64-linux"];
+  outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs:
+    let
+      supportedSystems = [ "x86_64-linux" ];
 
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
@@ -77,6 +78,6 @@
             ];
           };
         });
-        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
