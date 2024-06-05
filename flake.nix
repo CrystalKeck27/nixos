@@ -20,10 +20,7 @@
   };
 
   outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs: let
-  supportedSystems = ["x86_64-linux"];
-  outputs = { self, nixpkgs, home-manager, hyprland, waveforms, ... }@inputs:
-    let
-      supportedSystems = [ "x86_64-linux" ];
+      supportedSystems = ["x86_64-linux"];
 
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
@@ -49,23 +46,23 @@
         ];
       };
 
-    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/wsl/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useUserPackages = true;
-            useGlobalPkgs = false;
-            extraSpecialArgs = { inherit inputs; };
-            users.nixos = ./home/nixos/home.nix ;
-          };
-        }
-        nixos-wsl.nixosModules.wsl
-      ];
-    };
+      nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/wsl/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useUserPackages = true;
+              useGlobalPkgs = false;
+              extraSpecialArgs = { inherit inputs; };
+              users.nixos = ./home/nixos/home.nix ;
+            };
+          }
+          nixos-wsl.nixosModules.wsl
+        ];
+      };
 
       devShells = forAllSystems (system:
         let
@@ -80,6 +77,6 @@
             ];
           };
         });
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    };
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  };
 }
