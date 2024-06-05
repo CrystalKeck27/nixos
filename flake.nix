@@ -17,6 +17,7 @@
     waveforms.url = "github:CrystalKeck27/waveforms-flake";
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    inputs.vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs:
@@ -62,6 +63,10 @@
             };
           }
           nixos-wsl.nixosModules.wsl
+          vscode-server.nixosModules.default
+          ({ config, pkgs, ... }: {
+            services.vscode-server.enable = true;
+          })
         ];
       };
 
