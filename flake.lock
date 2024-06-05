@@ -510,7 +510,6 @@
     "waveforms": {
       "inputs": {
         "nixpkgs": "nixpkgs_5"
-        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1711125942,
