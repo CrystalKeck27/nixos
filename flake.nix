@@ -15,8 +15,12 @@
     ags.url = "github:Aylur/ags";
 
     waveforms.url = "github:CrystalKeck27/waveforms-flake";
+
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
+  outputs = { self, nixpkgs, nixos-wsl, home-manager, hyprland, waveforms, ... }@inputs: let
+  supportedSystems = ["x86_64-linux"];
   outputs = { self, nixpkgs, home-manager, hyprland, waveforms, ... }@inputs:
     let
       supportedSystems = [ "x86_64-linux" ];
@@ -44,6 +48,24 @@
           waveforms.nixosModule
         ];
       };
+
+    nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/wsl/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useUserPackages = true;
+            useGlobalPkgs = false;
+            extraSpecialArgs = { inherit inputs; };
+            users.nixos = ./home/nixos/home.nix ;
+          };
+        }
+        nixos-wsl.nixosModules.wsl
+      ];
+    };
 
       devShells = forAllSystems (system:
         let
