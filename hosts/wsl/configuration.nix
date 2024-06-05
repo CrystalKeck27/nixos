@@ -12,6 +12,24 @@
   wsl.defaultUser = "nixos";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  users.users.nixos = {
+    shell = pkgs.fish;
+    isNormalUser = true;
+    extraGroups = [ "wheel" "plugdev" "dialout" ];
+  };
+
+  environment.systemPackages = with pkgs; [
+    wget
+    networkmanager
+    unzip
+    git
+    gnumake
+  ];
+
+  programs.fish.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
