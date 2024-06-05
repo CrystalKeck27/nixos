@@ -83,6 +83,11 @@
     unzip
     xdg-utils
     git
+    playerctl
+    brightnessctl
+    gtk4
+    gnumake
+    gnome.seahorse
     inputs.xdg-portal-hyprland.packages.${system}.xdg-desktop-portal-hyprland
   ];
 
@@ -144,6 +149,16 @@
   ];
 
 
+  # programs.nix-ld.enable = true;
+  # programs.nix-ld.libraries = with pkgs; [
+  #   # Add any missing dynamic libraries for unpackaged programs
+  #   # here, NOT in environment.systemPackages
+
+  # ];
+
+  # nativeBuildInputs = [ pkg-config ];
+  # buildInputs = [ systemd ];
+  
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
