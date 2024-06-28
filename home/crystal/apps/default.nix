@@ -20,6 +20,8 @@
     pkgsCross.avr.buildPackages.gcc
     avrdude
     ravedude
+    qmk
+    qmk-udev-rules
 
     # Development
     cargo-generate
