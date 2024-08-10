@@ -20,8 +20,6 @@
     pkgsCross.avr.buildPackages.gcc
     avrdude
     ravedude
-    qmk
-    qmk-udev-rules
 
     # Development
     cargo-generate
@@ -32,12 +30,17 @@
     sass
     bun
     typescript
+    qmk
+    qmk-udev-rules
+    vial
+    via
 
     # Desktop
     dunst
     element-desktop
     gnome.seahorse
     gtk4
+    jq
     krita
     obsidian
     pamixer
@@ -48,7 +51,7 @@
     brightnessctl
     wlsunset
 
-    surrealist
+    # surrealist
     plex-media-player
     plexamp
 

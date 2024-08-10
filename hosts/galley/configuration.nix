@@ -50,7 +50,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -206,7 +205,8 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
+    keyboard.qmk.enable = true;
   };
 
   systemd = {
@@ -235,6 +235,14 @@
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", TAG+="uaccess"
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", TAG+="uaccess"
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", TAG+="uaccess"
+      '';
+    })
+    (pkgs.writeTextFile {
+      name = "vial.rules";
+      destination = "/lib/udev/rules.d/vial.rules";
+      text = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", TAG+="udev-acl", GROUP="realet"
       '';
     })
   ];

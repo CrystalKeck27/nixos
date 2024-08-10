@@ -9,8 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprland = {
+      url = "https://github.com/hyprwm/Hyprland";
+      type = "git";
+      submodules = true;
+    };
+    # hyprlock.url = "github:hyprwm/hyprlock";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     ags.url = "github:Aylur/ags";
 
@@ -49,7 +53,7 @@
       };
 
       nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         system = "x86_64-linux";
         modules = [
           ./hosts/wsl/configuration.nix
@@ -59,7 +63,7 @@
               useUserPackages = true;
               useGlobalPkgs = false;
               extraSpecialArgs = { inherit inputs; };
-              users.nixos = ./home/nixos/home.nix ;
+              users.nixos = ./home/nixos/home.nix;
             };
           }
           nixos-wsl.nixosModules.wsl
@@ -84,5 +88,5 @@
           };
         });
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-  };
+    };
 }
